@@ -69,13 +69,13 @@ module Delayed
 
     def to_active_record_yaml(options={})
       active_record_serialize_and_restore_object do
-        skip_object_desirialization do
+        skip_object_deserialization do
           to_yaml(options)
         end
       end
     end
 
-    def skip_object_desirialization(&block)
+    def skip_object_deserialization(&block)
       Thread.current[:skip_object_deserialization] = true
       block.call
     ensure
