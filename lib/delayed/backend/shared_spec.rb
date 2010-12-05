@@ -300,7 +300,7 @@ shared_examples_for 'a delayed_job backend' do
       job = story.delay.tell
       story.destroy
       lambda {
-        described_class.find(job.id).payload_object
+        described_class.find(job.id).payload_object.perform
       }.should raise_error(Delayed::DeserializationError)
     end
   end
